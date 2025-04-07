@@ -5,6 +5,7 @@ const titleInput = document.getElementById('note-title-input');
 const contentInput = document.getElementById('note-content-input');
 const closeButton = document.getElementById('close-note-form');
 const noteForm = document.getElementById('note-form');
+const coverUpload = document.getElementById('cover-upload');
 
 // --- Get references for Tag elements ---
 const tagsContainer = document.getElementById('tags-container');
@@ -41,15 +42,15 @@ function createTagElement(tag) {
     // Apply Tailwind classes for the tag appearance
     tagElement.classList.add(
         'tag-item', // Keep a generic class for easy selection if needed
-        'inline-flex',
-        'items-center',
-        'px-2', // padding left/right
-        'py-1', // padding top/bottom
-        'text-sm', // font size
-        'font-medium', // font weight (optional, adjust as needed)
-        'bg-gray-200', // background color
-        'text-gray-800', // text color
-        'rounded-full' // pill shape
+        'inline-block',
+        'bg-blue-100',
+        'text-blue-800',
+        'text-xs',
+        'font-medium',
+        'mr-1',
+        'px-2.5',
+        'py-0.5',
+        'rounded-full'
         // `gap-2` on the parent container handles spacing between tags
     );
     tagElement.textContent = tag;
@@ -83,6 +84,32 @@ function createTagElement(tag) {
 
 
 // --- Event Listeners ---
+
+// Cover Photo Upload
+if (coverUpload) {
+    coverUpload.addEventListener('change', (event) => {
+        const coverPhotoContainer = document.getElementById('cover-upload-container');
+        coverPhotoContainer.innerHTML = ''; // Clear any existing photo
+
+        const coverPhoto = document.createElement('img');
+        coverPhoto.classList.add('h-full', 'object-cover', 'rounded', 'filter', 'hover:brightness-50');
+        
+        coverPhoto.addEventListener('click', () => {
+            coverPhotoContainer.innerHTML = '';
+            coverPhotoContainer.classList.add('hidden');
+        });
+
+        coverPhotoContainer.classList.remove('hidden');
+        coverPhotoContainer.appendChild(coverPhoto);
+
+        const selectedFile = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            coverPhoto.src = event.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+    });
+}
 
 // Form Submission
 if (noteForm) {
