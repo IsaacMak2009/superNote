@@ -1,5 +1,4 @@
 import express, { Request, Response } from 'express';
-import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/supernote');
 
@@ -7,8 +6,8 @@ const app = express()
     .set('view engine', 'ejs')
     .set('views', __dirname + '/views')
     .use(express.static(__dirname + '/resources'))
-    .use(bodyParser.json())
-    .use(bodyParser.urlencoded({ extended: true }))
+    .use(express.json())
+    .use(express.urlencoded({ extended: true }))
     .use((err: Error, req: Request, res: Response, next: Function) => {
         console.error(err);
         res.status(500).send({ message: 'Internal Server Error', error: err });
