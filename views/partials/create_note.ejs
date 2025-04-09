@@ -33,17 +33,20 @@
 
         <div class="flex items-center justify-between pt-2 space-x-2">
             
-            <div class="flex items-center space-x-1 self-start py-1.5 px-1 rounded hover:bg-gray-100">
-                <label for="cover-upload" class="flex items-center space-x-1">
-                    <i class="fas fa-camera fa-fw text-gray-700"></i>
-                    <span class="text-sm font-medium text-gray-700">Add a Cover Photo</span>
-                </label>
-                <input type="file" id="cover-upload" name="cover" class="hidden" />
+            <div class="flex items-center space-x-1 self-start">
+                <div class="py-1.5 px-1 rounded hover:bg-gray-100">
+                    <label for="cover-upload" class="flex items-center space-x-1">
+                        <i class="fas fa-camera fa-fw text-gray-700"></i>
+                        <span class="text-sm font-medium text-gray-700">Add a Cover Photo</span>
+                    </label>
+                    <input type="file" id="cover-upload" name="cover" class="hidden" />
+                </div>
+                <div id="cover-upload-container"
+                    class="hidden flex items-center w-auto h-8 bg-gray-200 rounded">
+                </div>
             </div>
 
-            <div id="cover-upload-container"
-                class="self-start hidden flex items-center w-auto h-8 bg-gray-200 rounded">
-            </div>
+
 
             <div class="flex items-center space-x-2">
                 <button type="submit"

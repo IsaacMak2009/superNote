@@ -92,7 +92,7 @@ if (coverUpload) {
         coverPhotoContainer.innerHTML = ''; // Clear any existing photo
 
         const coverPhoto = document.createElement('img');
-        coverPhoto.classList.add('h-full', 'object-cover', 'rounded', 'filter', 'hover:brightness-50');
+        coverPhoto.classList.add('h-full', 'object-cover', 'rounded', 'filter', 'hover:grayscale', 'transition', 'duration-300', 'ease-in-out');
         
         coverPhoto.addEventListener('click', () => {
             coverPhotoContainer.innerHTML = '';
