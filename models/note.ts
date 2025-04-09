@@ -6,7 +6,6 @@ import { prop, getModelForClass, modelOptions, Severity } from '@typegoose/typeg
   }
 })
 export class Note {
-  @prop({ required: true, type: () => String }) public _id!: string;
   @prop({ required: true })                     public title!: string;
   @prop({ required: true })                     public content!: string;
   @prop({ type: () => [String] })               public tags!: string[];

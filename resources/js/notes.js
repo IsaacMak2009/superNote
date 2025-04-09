@@ -119,26 +119,21 @@ if (noteForm) {
         // The hiddenTagsInput is already updated and part of the form
         const formData = new FormData(noteForm);
 
-        // Log the data (including title, content, and tags)
-        console.log("Form Data to be Submitted:");
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-
-        console.log('Form submission logic would run here (e.g., fetch request).');
-
-        // --- Example: Clear form after successful "submission" ---
-        // In a real app, you'd do this in the 'success' part of your fetch/AJAX call
-        // setTimeout(() => { // Simulate async operation
-        //     noteForm.reset(); // Resets title, content, but NOT hidden input reliably across browsers
-        //     titleInput.value = ''; // Explicit clear
-        //     contentInput.value = ''; // Explicit clear
-        //     tags = []; // Clear tags array
-        //     updateTagsDisplayAndHiddenInput(); // Clear tags visually and hidden input
-        //     // Optionally collapse the form again
-        //     closeButton.click(); // Simulate click on close button
-        // }, 500);
-        // --- End Example ---
+        fetch(noteForm.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle successful response
+            console.log('Note created successfully:', data.message);
+            alert('Note created successfully!');
+            location.reload();
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error creating note:', error);
+        });
     });
 }
 
